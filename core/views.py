@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import os
 from item.models import Item, Category
 from .forms import SignupForm
@@ -15,5 +15,15 @@ def contact(request):
     return render(request, os.path.join('core', 'contact.html'))
 
 def signup(request):
-    form = SignupForm()
+    if request.method == 'POST':
+        print(request)
+
+        form = SignupForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/login/')
+    else:
+        form = SignupForm()
+
     return render(request,os.path.join('core', 'signup.html'), context={'form': form})
