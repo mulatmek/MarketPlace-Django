@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 import os
 from item.models import Item, Category
-from .forms import SignupForm
+from .forms import SignupForm, LoginForm
 def index(request):
     items = Item.objects.filter(is_sold=False)[0:6]
     categories = Category.objects.all()
@@ -27,3 +27,12 @@ def signup(request):
         form = SignupForm()
 
     return render(request,os.path.join('core', 'signup.html'), context={'form': form})
+
+def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            return redirect('/')
+    else:
+        form = LoginForm()
+    return render(request, os.path.join('core', 'login.html'), context={'form': form})
