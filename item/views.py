@@ -22,7 +22,8 @@ def new_item(request):
             return redirect('item:detail', item_id=item.id)
     else:
         form = NewItemForm()
-        return render(request, 'item/form.html', {
-            'form': form,
-            'title': 'Add New Item',
-        })
+        
+    return render(request, 'item/form.html', {
+        'form': form,
+        'title': 'Add New Item',
+    })
