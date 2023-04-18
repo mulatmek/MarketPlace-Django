@@ -26,3 +26,27 @@ class NewItemForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={
         'class': CLASS_INPUT    
     }))
+
+class EditItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ('name', 'description', 'price', 'price', 'image', 'is_sold')
+
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Name',
+        'class': CLASS_INPUT
+    }))
+
+    description = forms.CharField(widget=forms.Textarea(attrs={
+        'placeholder': 'Description',
+        'class': CLASS_INPUT
+    }))
+
+    price = forms.FloatField(widget=forms.NumberInput(attrs={
+        'placeholder': 'Price',
+        'class': CLASS_INPUT
+    }))
+
+    image = forms.ImageField(widget=forms.FileInput(attrs={
+        'class': CLASS_INPUT    
+    }))

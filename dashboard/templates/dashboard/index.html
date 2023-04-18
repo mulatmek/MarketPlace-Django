@@ -6,11 +6,21 @@
     <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
         <h2 class="mb-12 text-2xl text-center">My items</h2>
 
-        <div class="grid grid-cols-3 gap-3">
+        <div class="grid grid-cols-3 gap-3 item">
             {% for item in items %}
                 <div>
                     <a href="{% url 'item:detail' item.id %}">
                         <div>
+                            <style>
+                                .item img{
+                                    width: 200px;
+                                    height: 200px;
+                                }
+                                .item{
+                                    width: 45%;
+                                    height: 50%;
+                                }
+                            </style>
                             <img src="{{ item.image.url }}" class="rounded-t-xl">
                         </div>
 
